@@ -1,49 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>How to Import Excel Data into Mysql in Codeigniter</title>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>asset/bootstrap.min.css" />
-	<script src="<?php echo base_url(); ?>asset/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>asset/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Roboto+Slab&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e372c84a64.js" crossorigin="anonymous"></script>
+    <script src="<?php echo base_url(); ?>asset/jquery.min.js"></script>
+
+    <title>Home</title>
 </head>
-
 <body>
-	<div class="container">
-		<br />
-		<h3 align="center">How to Import Excel Data into Mysql in Codeigniter</h3>
-		<form method="post" id="import_form" enctype="multipart/form-data">
-			<p><label>Select Excel File</label>
-			<input type="file" name="file" id="file" required accept=".xls, .xlsx" /></p>
-			<br />
-			<input type="submit" name="import" value="Import" class="btn btn-info" />
-		</form>
-		<br />
-		<div class="table-responsive" id="customer_data">
+    <nav>
+        <div id="menu-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul>
+            <li>
+                <a class="active" href="<?php echo base_url();?>">Home</a>
+            </li>
+            <li>
+                <a href="#">Report</a>
+            </li>
+            <li>
+                <a href="<?php echo base_url();?>sheet/sheet1">Sheet 1</a>
+            </li>
+            <li>
+                <a href="<?php echo base_url();?>sheet/sheet2">Sheet 2</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <main>
 
-		</div>
-	</div>
+        <h2 class="section-heading">Import Excel file</h2>
+
+        <section>
+            <div class="card">
+                <div class="card-description">
+                    <p>
+                        Sheet 1 Excel
+                    </p>
+
+                    <form method="post" id="import_sheet1" enctype="multipart/form-data">
+                        <input type="file" name="file" id="file" required accept=".xls, .xlsx" />
+                        <br />
+                        <input type="submit" name="import" value="Import" class="btn-readmore" />
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-description">
+                    <p>
+                        Sheet 2 Excel
+                    </p>
+                    
+                    <form method="post" id="import_sheet2" enctype="multipart/form-data">
+                        <input type="file" name="file" id="file" required accept=".xls, .xlsx" />
+                        <br />
+                        <input type="submit" name="import" value="Import" class="btn-readmore" />
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="section-heading">Generate</h2>
+
+        <section>
+            <div class="card">
+                <div class="card-description">
+                    <p>
+                        Merge Data
+                    </p>
+                    <input type="submit" name="import" value="Merge" class="btn-readmore" />
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <script src="<?php echo base_url(); ?>asset/main.js"></script>
 </body>
 </html>
 
 <script>
 $(document).ready(function(){
-
-	load_data();
-
-	function load_data()
-	{
-		$.ajax({
-			url:"<?php echo base_url(); ?>excel_import/fetch",
-			method:"POST",
-			success:function(data){
-				$('#customer_data').html(data);
-			}
-		})
-	}
-
-	$('#import_form').on('submit', function(event){
+    
+    $('#import_sheet1').on('submit', function(event){
 		event.preventDefault();
 		$.ajax({
-			url:"<?php echo base_url(); ?>excel_import/import",
+			url:"<?php echo base_url(); ?>excel_import/import_sheet1",
 			method:"POST",
 			data:new FormData(this),
 			contentType:false,
@@ -51,7 +99,22 @@ $(document).ready(function(){
 			processData:false,
 			success:function(data){
 				$('#file').val('');
-				load_data();
+				alert(data);
+			}
+		})
+	});
+
+	$('#import_sheet2').on('submit', function(event){
+		event.preventDefault();
+		$.ajax({
+			url:"<?php echo base_url(); ?>excel_import/import_sheet2",
+			method:"POST",
+			data:new FormData(this),
+			contentType:false,
+			cache:false,
+			processData:false,
+			success:function(data){
+				$('#file').val('');
 				alert(data);
 			}
 		})
