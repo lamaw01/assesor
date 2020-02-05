@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Excel Sheet 2</title>
+	<title>Joined Data</title>
 	<link rel="stylesheet" href="<?php echo base_url(); ?>asset/bootstrap.min.css" />
 	<script src="<?php echo base_url(); ?>asset/jquery.min.js"></script>
 </head>
@@ -9,8 +9,8 @@
 <body>
 	<div class="container-fluid">
 		<br />
-		<h3 align="center">Excel Sheet 2</h3>
-		<div class="table-responsive" id="excel_data2">
+		<h3 align="center">Joined Data</h3>
+		<div class="table-responsive" id="join_data">
 		</div>
 	</div>
 </body>
@@ -24,13 +24,13 @@ $(document).ready(function(){
 	function load_data()
 	{
 		$.ajax({
-			url:"<?php echo base_url(); ?>excel_import/fetch_sheet2",
+			url:"<?php echo base_url(); ?>excel_import/fetch_join",
 			method:"POST",
 			beforeSend: function() {    
-				$("#excel_data2").html('Please wait...');
+				$("#join_data").html('Please wait...');
 				},
 			success:function(data){
-				$('#excel_data2').html(data);
+				$('#join_data').html(data);
 			}
 		})
 	}

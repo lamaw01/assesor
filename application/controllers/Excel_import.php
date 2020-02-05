@@ -219,6 +219,50 @@ class Excel_import extends CI_Controller
 			echo 'Data Imported successfully';
 		}	
 	}
+
+	function fetch_join()
+	{
+		$data = $this->excel_import_model->join();
+		$output = '
+		<p align="center">Total Data - '.$data->num_rows().'<p>
+		<table class="table table-striped table-bordered">
+			<tr>
+				<th>Pin_New</th>
+				<th>Old_pin</th>
+				<th>Owner</th>
+				<th>Owner_Address</th>
+				<th>Td</th>
+				<th>Title</th>
+				<th>Cad_lot</th>
+				<th>Area1</th>
+				<th>Area2</th>
+				<th>Kind1</th>
+				<th>Kind2</th>
+				<th>Actual_use</th>
+			</tr>
+		';
+		foreach($data->result() as $row)
+		{
+			$output .= '
+			<tr>
+				<td>'.$row->pin_new.'</td>
+				<td>'.$row->old_pin.'</td>
+				<td>'.$row->owner.'</td>
+				<td>'.$row->owner_address.'</td>
+				<td>'.$row->td.'</td>
+				<td>'.$row->title.'</td>
+				<td>'.$row->cad_lot.'</td>
+				<td>'.$row->area1.'</td>
+				<td>'.$row->area2.'</td>
+				<td>'.$row->kind1.'</td>
+				<td>'.$row->kind2.'</td>
+				<td>'.$row->actual_use.'</td>
+			</tr>
+			';
+		}
+		$output .= '</table>';
+		echo $output;
+	}
 }
 
 ?>

@@ -7,7 +7,7 @@
 </head>
 
 <body>
-	<div class="container">
+	<div class="container-fluid">
 		<br />
 		<h3 align="center">Excel Sheet 1</h3>
 		<div class="table-responsive" id="excel_data1">
@@ -26,6 +26,9 @@ $(document).ready(function(){
 		$.ajax({
 			url:"<?php echo base_url(); ?>excel_import/fetch_sheet1",
 			method:"POST",
+			beforeSend: function() {    
+				$("#excel_data1").html('Please wait...');
+				},
 			success:function(data){
 				$('#excel_data1').html(data);
 			}

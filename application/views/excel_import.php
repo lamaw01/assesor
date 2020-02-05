@@ -21,7 +21,7 @@
                 <a class="active" href="<?php echo base_url();?>">Home</a>
             </li>
             <li>
-                <a href="#">Report</a>
+                <a href="<?php echo base_url();?>sheet/report">Report</a>
             </li>
             <li>
                 <a href="<?php echo base_url();?>sheet/sheet1">Sheet 1</a>
@@ -65,20 +65,7 @@
                 </div>
             </div>
         </section>
-
-        <h2 class="section-heading">Generate</h2>
-
-        <section>
-            <div class="card">
-                <div class="card-description">
-                    <p>
-                        Merge Data
-                    </p>
-                    <input type="submit" name="import" value="Merge" class="btn-readmore" />
-                </div>
-            </div>
-        </section>
-        
+                
     </main>
 
     <script src="<?php echo base_url(); ?>asset/main.js"></script>

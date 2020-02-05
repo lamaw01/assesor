@@ -1,0 +1,5 @@
+SELECT sheet1.old_pin, sheet1.owner, sheet2.pin_new
+FROM sheet1
+INNER JOIN sheet2
+ON sheet1.old_pin = sheet2.old_pin
+GROUP BY sheet1_id;
