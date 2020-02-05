@@ -4,12 +4,15 @@
 	<title>Joined Data</title>
 	<link rel="stylesheet" href="<?php echo base_url(); ?>asset/bootstrap.min.css" />
 	<script src="<?php echo base_url(); ?>asset/jquery.min.js"></script>
+	<style>
+		td, th {
+			text-align: center;
+		}
+	</style>
 </head>
 
 <body>
 	<div class="container-fluid">
-		<br />
-		<h3 align="center">Joined Data</h3>
 		<div class="table-responsive" id="join_data">
 		</div>
 	</div>

@@ -18,6 +18,8 @@ class Excel_import extends CI_Controller
 	{
 		$data = $this->excel_import_model->select_sheet1();
 		$output = '
+		<br />
+		<h3 align="center">Excel Sheet 1</h3>
 		<p align="center">Total Data - '.$data->num_rows().'<p>
 		<table class="table table-striped table-bordered">
 			<tr>
@@ -86,6 +88,8 @@ class Excel_import extends CI_Controller
 	{
 		$data = $this->excel_import_model->select_sheet2();
 		$output = '
+		<br />
+		<h3 align="center">Excel Sheet 2</h3>
 		<p align="center">Total Data - '.$data->num_rows().'<p>
 		<table class="table table-striped table-bordered">
 			<tr>
@@ -224,6 +228,8 @@ class Excel_import extends CI_Controller
 	{
 		$data = $this->excel_import_model->join();
 		$output = '
+		<br />
+		<h3 align="center">Joined Data</h3>
 		<p align="center">Total Data - '.$data->num_rows().'<p>
 		<table class="table table-striped table-bordered">
 			<tr>

@@ -4,12 +4,15 @@
 	<title>Excel Sheet 2</title>
 	<link rel="stylesheet" href="<?php echo base_url(); ?>asset/bootstrap.min.css" />
 	<script src="<?php echo base_url(); ?>asset/jquery.min.js"></script>
+	<style>
+		td, th {
+			text-align: center;
+		}
+	</style>
 </head>
 
 <body>
 	<div class="container-fluid">
-		<br />
-		<h3 align="center">Excel Sheet 2</h3>
 		<div class="table-responsive" id="excel_data2">
 		</div>
 	</div>
