@@ -39,4 +39,37 @@ class Excel_import_model extends CI_Model
 		return $query;
 	}
 	
+	function count_all()
+	{
+	$query = $this->db->get("sheet2");
+	return $query->num_rows();
+	}
+
+	function fetch_details($limit, $start)
+	{
+		$output = '';
+		$this->db->select("sheet2_id, old_pin");
+		$this->db->from("sheet2");
+		$this->db->order_by("sheet2_id", "ASC");
+		$this->db->limit($limit, $start);
+		$query = $this->db->get();
+		$output .= '
+		<table class="table table-bordered">
+		<tr>
+			<th>Sheet2_id</th>
+			<th>Old_pin</th>
+		</tr>
+		';
+		foreach($query->result() as $row)
+		{
+		$output .= '
+		<tr>
+			<td>'.$row->sheet2_id.'</td>
+			<td>'.$row->old_pin.'</td>
+		</tr>
+		';
+		}
+		$output .= '</table>';
+		return $output;
+	}
 }
