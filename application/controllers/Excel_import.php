@@ -14,112 +14,6 @@ class Excel_import extends CI_Controller
 		$this->load->view('excel_import');
 	}
 
-	function fetch_sheet1()
-	{
-		$data = $this->excel_import_model->select_sheet1();
-		$output = '
-		<br />
-		<h3 align="center">Excel Sheet 1</h3>
-		<p align="center">Total Data - '.$data->num_rows().'<p>
-		<table class="table table-striped table-bordered">
-			<tr>
-				<th>Td</th>
-				<th>Old_pin</th>
-				<th>Ext</th>
-				<th>Owner</th>
-				<th>Owner_address</th>
-				<th>Location</th>
-				<th>Title</th>
-				<th>Barangay</th>
-				<th>Lot_description</th>
-				<th>Cad_lot</th>
-				<th>Class</th>
-				<th>Assessment_date</th>
-				<th>Area1</th>
-				<th>Kind1</th>
-				<th>Area2</th>
-				<th>Kind2</th>
-				<th>Bldg_desc</th>
-				<th>Floor_area</th>
-				<th>Mach_desc</th>
-				<th>Actual_use</th>
-				<th>Spec</th>
-				<th>Taxable</th>
-				<th>Av</th>
-				<th>Mv</th>
-			</tr>
-		';
-		foreach($data->result() as $row)
-		{
-			$output .= '
-			<tr>
-				<td>'.$row->td.'</td>
-				<td>'.$row->old_pin.'</td>
-				<td>'.$row->ext.'</td>
-				<td>'.$row->owner.'</td>
-				<td>'.$row->owner_address.'</td>
-				<td>'.$row->location.'</td>
-				<td>'.$row->title.'</td>
-				<td>'.$row->barangay.'</td>
-				<td>'.$row->lot_description.'</td>
-				<td>'.$row->cad_lot.'</td>
-				<td>'.$row->class.'</td>
-				<td>'.$row->assessment_date.'</td>
-				<td>'.$row->area1.'</td>
-				<td>'.$row->kind1.'</td>
-				<td>'.$row->area2.'</td>
-				<td>'.$row->kind2.'</td>
-				<td>'.$row->bldg_desc.'</td>
-				<td>'.$row->floor_area.'</td>
-				<td>'.$row->mach_desc.'</td>
-				<td>'.$row->actual_use.'</td>
-				<td>'.$row->spec.'</td>
-				<td>'.$row->taxable.'</td>
-				<td>'.$row->av.'</td>
-				<td>'.$row->mv.'</td>
-			</tr>
-			';
-		}
-		$output .= '</table>';
-		echo $output;
-	}
-	
-	function fetch_sheet2()
-	{
-		$data = $this->excel_import_model->select_sheet2();
-		$output = '
-		<br />
-		<h3 align="center">Excel Sheet 2</h3>
-		<p align="center">Total Data - '.$data->num_rows().'<p>
-		<table class="table table-striped table-bordered">
-			<tr>
-				<th>Old_pin</th>
-				<th>Cad_no</th>
-				<th>Parcel_no</th>
-				<th>Barangay</th>
-				<th>Section</th>
-				<th>Pin_new</th>
-				<th>Section_new</th>
-			</tr>
-		';
-		foreach($data->result() as $row)
-		{
-			$output .= '
-			<tr>
-				<td>'.$row->old_pin.'</td>
-				<td>'.$row->cad_no.'</td>
-				<td>'.$row->parcel_no.'</td>
-				<td>'.$row->barangay.'</td>
-				<td>'.$row->section.'</td>
-				<td>'.$row->pin_new.'</td>
-				<td>'.$row->section_new.'</td>
-			</tr>
-			';
-		}
-		$output .= '</table>';
-		echo $output;
-	}
-
 	function import_sheet1()
 	{
 		if(isset($_FILES["file"]["name"]))
@@ -224,59 +118,13 @@ class Excel_import extends CI_Controller
 		}	
 	}
 
-	function fetch_join()
-	{
-		$data = $this->excel_import_model->join();
-		$output = '
-		<br />
-		<h3 align="center">Joined Data</h3>
-		<p align="center">Total Data - '.$data->num_rows().'<p>
-		<table class="table table-striped table-bordered">
-			<tr>
-				<th>Pin_New</th>
-				<th>Old_pin</th>
-				<th>Owner</th>
-				<th>Owner_Address</th>
-				<th>Td</th>
-				<th>Title</th>
-				<th>Cad_lot</th>
-				<th>Area1</th>
-				<th>Area2</th>
-				<th>Kind1</th>
-				<th>Kind2</th>
-				<th>Actual_use</th>
-			</tr>
-		';
-		foreach($data->result() as $row)
-		{
-			$output .= '
-			<tr>
-				<td>'.$row->pin_new.'</td>
-				<td>'.$row->old_pin.'</td>
-				<td>'.$row->owner.'</td>
-				<td>'.$row->owner_address.'</td>
-				<td>'.$row->td.'</td>
-				<td>'.$row->title.'</td>
-				<td>'.$row->cad_lot.'</td>
-				<td>'.$row->area1.'</td>
-				<td>'.$row->area2.'</td>
-				<td>'.$row->kind1.'</td>
-				<td>'.$row->kind2.'</td>
-				<td>'.$row->actual_use.'</td>
-			</tr>
-			';
-		}
-		$output .= '</table>';
-		echo $output;
-	}
-
-	function pagination()
+	function pagination_sheet2()
 	{
 		$this->load->model("excel_import_model");
 		$this->load->library("pagination");
 		$config = array();
-		$config["base_url"] = "#";
-		$config["total_rows"] = $this->excel_import_model->count_all();
+		$config["base_url"] = base_url() . "sheet/sheet2";
+		$config["total_rows"] = $this->excel_import_model->count_sheet2();
 		$config["per_page"] = 10;
 		$config["uri_segment"] = 3;
 		$config["use_page_numbers"] = TRUE;
@@ -302,12 +150,87 @@ class Excel_import extends CI_Controller
 		$start = ($page - 1) * $config["per_page"];
 
 		$output = array(
-		'pagination_link'  => $this->pagination->create_links(),
-		'country_table'   => $this->excel_import_model->fetch_details($config["per_page"], $start)
+			'pagination_link'  => $this->pagination->create_links(),
+			'sheet2_table'   => $this->excel_import_model->fetch_sheet2($config["per_page"], $start)
 		);
 		echo json_encode($output);
 	}
- 
+
+	function pagination_sheet1()
+	{
+		$this->load->model("excel_import_model");
+		$this->load->library("pagination");
+		$config = array();
+		$config["base_url"] = base_url() . "sheet/sheet1";
+		$config["total_rows"] = $this->excel_import_model->count_sheet1();
+		$config["per_page"] = 10;
+		$config["uri_segment"] = 3;
+		$config["use_page_numbers"] = TRUE;
+		$config["full_tag_open"] = '<ul class="pagination">';
+		$config["full_tag_close"] = '</ul>';
+		$config["first_tag_open"] = '<li>';
+		$config["first_tag_close"] = '</li>';
+		$config["last_tag_open"] = '<li>';
+		$config["last_tag_close"] = '</li>';
+		$config['next_link'] = '&gt;';
+		$config["next_tag_open"] = '<li>';
+		$config["next_tag_close"] = '</li>';
+		$config["prev_link"] = "&lt;";
+		$config["prev_tag_open"] = "<li>";
+		$config["prev_tag_close"] = "</li>";
+		$config["cur_tag_open"] = "<li class='active'><a href='#'>";
+		$config["cur_tag_close"] = "</a></li>";
+		$config["num_tag_open"] = "<li>";
+		$config["num_tag_close"] = "</li>";
+		$config["num_links"] = 1;
+		$this->pagination->initialize($config);
+		$page = $this->uri->segment(3);
+		$start = ($page - 1) * $config["per_page"];
+
+		$output = array(
+			'pagination_link'  => $this->pagination->create_links(),
+			'sheet1_table'   => $this->excel_import_model->fetch_sheet1($config["per_page"], $start)
+		);
+		echo json_encode($output);
+	}
+
+	function pagination_report()
+	{
+		$this->load->model("excel_import_model");
+		$this->load->library("pagination");
+		$config = array();
+		$config["base_url"] = base_url() . "sheet/report";
+		$config["total_rows"] = $this->excel_import_model->count_report();
+		$config["per_page"] = 10;
+		$config["uri_segment"] = 3;
+		$config["use_page_numbers"] = TRUE;
+		$config["full_tag_open"] = '<ul class="pagination">';
+		$config["full_tag_close"] = '</ul>';
+		$config["first_tag_open"] = '<li>';
+		$config["first_tag_close"] = '</li>';
+		$config["last_tag_open"] = '<li>';
+		$config["last_tag_close"] = '</li>';
+		$config['next_link'] = '&gt;';
+		$config["next_tag_open"] = '<li>';
+		$config["next_tag_close"] = '</li>';
+		$config["prev_link"] = "&lt;";
+		$config["prev_tag_open"] = "<li>";
+		$config["prev_tag_close"] = "</li>";
+		$config["cur_tag_open"] = "<li class='active'><a href='#'>";
+		$config["cur_tag_close"] = "</a></li>";
+		$config["num_tag_open"] = "<li>";
+		$config["num_tag_close"] = "</li>";
+		$config["num_links"] = 1;
+		$this->pagination->initialize($config);
+		$page = $this->uri->segment(3);
+		$start = ($page - 1) * $config["per_page"];
+
+		$output = array(
+			'pagination_link'  => $this->pagination->create_links(),
+			'report_table'   => $this->excel_import_model->fetch_report($config["per_page"], $start)
+		);
+		echo json_encode($output);
+	}
 }
 
 ?>

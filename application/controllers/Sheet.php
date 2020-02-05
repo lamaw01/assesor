@@ -13,11 +13,6 @@ class Sheet extends CI_Controller {
 		$this->load->view('sheet2');
 	}
 
-	public function sheet3()
-	{
-		$this->load->view('sheet3');
-	}
-
 	public function report()
 	{
 		$this->load->view('report');

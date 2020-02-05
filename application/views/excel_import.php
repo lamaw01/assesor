@@ -29,9 +29,6 @@
             <li>
                 <a href="<?php echo base_url();?>sheet/sheet2">Sheet 2</a>
             </li>
-            <li>
-                <a href="<?php echo base_url();?>sheet/sheet3">Sheet 3</a>
-            </li>
         </ul>
     </nav>
     
