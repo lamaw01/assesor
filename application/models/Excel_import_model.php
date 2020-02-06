@@ -160,6 +160,7 @@ class Excel_import_model extends CI_Model
 		$this->db->from('sheet1');
 		$this->db->join('sheet2','sheet1.old_pin = sheet2.old_pin');
 		$this->db->group_by('sheet1_id');
+		
 		$this->db->limit($limit, $start);
 		$query = $this->db->get();
 		$output .= '

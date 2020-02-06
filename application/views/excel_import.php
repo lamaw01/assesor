@@ -11,11 +11,8 @@
 
     <title>Home</title>
 </head>
-<body>
-    <nav>
-        <div id="menu-icon">
-            <i class="fas fa-bars"></i>
-        </div>
+
+<nav>
         <ul>
             <li>
                 <a class="active" href="<?php echo base_url();?>">Home</a>
@@ -31,7 +28,8 @@
             </li>
         </ul>
     </nav>
-    
+
+<body>
     <main>
 
         <h2 class="section-heading">Import Excel file</h2>
