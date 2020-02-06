@@ -10,9 +10,15 @@
     <script src="<?php echo base_url(); ?>asset/jquery.min.js"></script>
 
     <title>Home</title>
+    
 </head>
 
-<nav>
+<body>
+
+    <nav>
+        <div id="menu-icon">
+            <i class="fas fa-bars"></i>
+        </div>
         <ul>
             <li>
                 <a class="active" href="<?php echo base_url();?>">Home</a>
@@ -28,8 +34,7 @@
             </li>
         </ul>
     </nav>
-
-<body>
+    
     <main>
 
         <h2 class="section-heading">Import Excel file</h2>

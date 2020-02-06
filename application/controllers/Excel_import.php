@@ -220,18 +220,18 @@ class Excel_import extends CI_Controller
 		$config["cur_tag_close"] = "</a></li>";
 		$config["num_tag_open"] = "<li>";
 		$config["num_tag_close"] = "</li>";
-		#$config["num_links"] = 1;
-		$config['num_links'] = 2;
+		$config["num_links"] = 1;
+		#config['num_links'] = 2;
         #$config['use_page_numbers'] = TRUE;
-        $config['reuse_query_string'] = TRUE;
+        #$config['reuse_query_string'] = TRUE;
 		$this->pagination->initialize($config);
-		#$page = $this->uri->segment(3);
-		#$start = ($page - 1) * $config["per_page"];
-		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		$page = $this->uri->segment(3);
+		$start = ($page - 1) * $config["per_page"];
+		#$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
 		$output = array(
 			'pagination_link'  => $this->pagination->create_links(),
-			'report_table'   => $this->excel_import_model->fetch_report($config["per_page"], $page)
+			'report_table'   => $this->excel_import_model->fetch_report($config["per_page"], $start)
 		);
 		echo json_encode($output);
 	}

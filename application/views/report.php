@@ -18,7 +18,9 @@
 	</style>
 </head>
 
-<nav>
+<body>
+
+	<nav>
         <ul>
             <li>
                 <a href="<?php echo base_url();?>">Home</a>
@@ -35,10 +37,8 @@
         </ul>
     </nav>
 
-<body>
-
 	<div class="container-fluid">
-		<div align="right" id="pagination_link"></div>
+		<div align="right" class="pagination_link"></div>
 		<div class="table-responsive" id="report_table"></div>
 	</div>
 </body>
@@ -55,7 +55,7 @@ function load_report_data(page)
 		success:function(data)
 		{
 			$('#report_table').html(data.report_table);
-			$('#pagination_link').html(data.pagination_link);
+			$('.pagination_link').html(data.pagination_link);
 		}
 	});
 }
