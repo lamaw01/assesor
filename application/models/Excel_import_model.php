@@ -158,7 +158,8 @@ class Excel_import_model extends CI_Model
 		sheet1.cad_lot AS cad_lot, sheet1.area1 AS area1, sheet1.area2 AS area2, sheet1.kind1 AS kind1, 
 		sheet1.kind2 AS kind2, sheet1.actual_use AS actual_use');
 		$this->db->from('sheet1');
-		$this->db->join('sheet2','sheet1.old_pin = sheet2.old_pin');
+		$this->db->join('sheet2','sheet1.old_pin = sheet2.old_pin');		
+		$this->db->order_by("pin_new", "ASC");
 		$this->db->group_by('sheet1_id');
 		
 		$this->db->limit($limit, $start);

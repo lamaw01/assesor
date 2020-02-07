@@ -20,7 +20,7 @@
 
 <body>
 
-	<nav>
+	<nav class="noPrint">
         <ul>
             <li>
                 <a href="<?php echo base_url();?>">Home</a>
@@ -35,10 +35,9 @@
                 <a href="<?php echo base_url();?>sheet/sheet2">Sheet 2</a>
             </li>
         </ul>
-    </nav>
-
+	</nav>
 	<div class="container-fluid">
-		<div align="right" class="pagination_link"></div>
+		<div align="right" class="pagination_link noPrintpg"></div>
 		<div class="table-responsive" id="report_table"></div>
 	</div>
 </body>
@@ -67,7 +66,10 @@ $(document).on("click", ".pagination li a", function(event)
 	event.preventDefault();
 	var page = $(this).data("ci-pagination-page");
 	load_report_data(page);
+
 });
+
+/*$('.pagination').prop('disabled', 'true');*/
 
 });
 </script>

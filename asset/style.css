@@ -104,6 +104,14 @@ nav {
   z-index: 100;
 }
 
+@media print 
+        {
+            .noPrint 
+            {
+                 display:none;
+            }
+        }
+
 nav a {
   padding: 0 32px;
   color: #eee;
@@ -549,3 +557,11 @@ footer #social-media-footer ul li:hover a .fa-twitter {
     width: 85%;
   }
 }
+
+@media print 
+        {
+            .noPrintpg
+            {
+                 display:none;
+            }
+        }
