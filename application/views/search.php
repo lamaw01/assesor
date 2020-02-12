@@ -14,25 +14,37 @@
 		}
 		p {
 			font-size: 14px;
-		}
+        }
+        /*table{
+            width:100%;
+        }
+        td {
+            max-width: 150px !important; 
+            
+        }
+        td p{
+            
+            text-overflow: ellipsis;
+            white-space: initial;
+            overflow: hidden;
+            padding: 3px 5px;
+        }*/
     </style>
 
 </head>
-
-    
 
 <body>
 
     <div class="container-fluid">
         <h2 align="center">Search</h2><br />
-    <div class="form-group">
-        <div class="input-group">
-        <span class="input-group-addon">Search</span>
-        <input type="text" name="search_text" id="search_text" placeholder="Search keyword..." class="form-control" />
+        <div class="form-group">
+            <div class="input-group"> 
+                <span class="input-group-addon">Search</span>
+                <input type="text" name="search_text" id="search_text" placeholder="Search keyword..." class="form-control" />
+            </div>
         </div>
-    </div>
         <div class="table-responsive" id="result"></div>
-        </div>
+    </div>
     <div style="clear:both"></div>
 
 </body>

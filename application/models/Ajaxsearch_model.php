@@ -15,22 +15,23 @@ class Ajaxsearch_model extends CI_Model
   $this->db->join('sheet2','sheet1.old_pin = sheet2.old_pin');		
   #$this->db->order_by("old_pin", "ASC");
   $this->db->group_by('sheet1_id');
+  $this->db->limit(100);
 
   if($query != '')
   {
    $this->db->like('sheet1.old_pin', $query);
-   $this->db->or_like('ext', $query);
-   $this->db->or_like('pin_new', $query);
+   $this->db->or_like('sheet1.ext', $query);
+   $this->db->or_like('sheet2.pin_new', $query);
    $this->db->or_like('sheet1.owner', $query);
-   $this->db->or_like('owner_address', $query);
-   $this->db->or_like('td', $query);
-   $this->db->or_like('title', $query);
-   $this->db->or_like('cad_lot', $query);
-   $this->db->or_like('area1', $query);
-   $this->db->or_like('area2', $query);
-   $this->db->or_like('kind1', $query);
-   $this->db->or_like('kind2', $query);
-   $this->db->or_like('actual_use', $query);
+   $this->db->or_like('sheet1.owner_address', $query);
+   $this->db->or_like('sheet1.td', $query);
+   $this->db->or_like('sheet1.title', $query);
+   $this->db->or_like('sheet1.cad_lot', $query);
+   $this->db->or_like('sheet1.area1', $query);
+   $this->db->or_like('sheet1.area2', $query);
+   $this->db->or_like('sheet1.kind1', $query);
+   $this->db->or_like('sheet1.kind2', $query);
+   $this->db->or_like('sheet1.actual_use', $query);
   }
   $this->db->order_by('old_pin', 'ASC');
   return $this->db->get();

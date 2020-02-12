@@ -19,23 +19,22 @@ class Search extends CI_Controller {
   }
   $data = $this->ajaxsearch_model->fetch_data($query);
   $output .= '
-  <div class="table-responsive">
-     <table class="table table-bordered table-striped">
-      <tr>
-        <th><p>Old_pin</p></th>
-        <th><p>Ext</p></th>
-        <th><p>Pin_New</p></th>	
-        <th><p>Owner</p></th>
-        <th><p>Owner_Address</p></th>
-        <th><p>Td</p></th>
-        <th><p>Title</p></th>
-        <th><p>Cad_lot</p></th>
-        <th><p>Area1</p></th>
-        <th><p>Area2</p></th>
-        <th><p>Kind1</p></th>
-        <th><p>Kind2</p></th>
-        <th><p>Actual_use</p></th>
-      </tr>
+  <table class="table table-bordered">
+  <tr>
+    <th><p>Old_pin</p></th>
+    <th><p>Ext</p></th>
+    <th><p>Pin_New</p></th>	
+    <th><p>Owner</p></th>
+    <th><p>Owner_Address</p></th>
+    <th><p>Td</p></th>
+    <th><p>Title</p></th>
+    <th><p>Cad_lot</p></th>
+    <th><p>Area1</p></th>
+    <th><p>Area2</p></th>
+    <th><p>Kind1</p></th>
+    <th><p>Kind2</p></th>
+    <th><p>Actual_use</p></th>
+  </tr>
   ';
   if($data->num_rows() > 0)
   {
