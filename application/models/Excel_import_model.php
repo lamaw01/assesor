@@ -23,6 +23,7 @@ class Excel_import_model extends CI_Model
 		$this->db->select("*");
 		$this->db->from("sheet2");
 		$this->db->order_by("sheet2_id", "ASC");
+		
 		$this->db->limit($limit, $start);
 		$query = $this->db->get();
 		$output .= '

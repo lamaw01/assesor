@@ -16,6 +16,7 @@
 			font-size: 14px;
 		}
 	</style>
+
 </head>
 
 <body>
@@ -37,6 +38,7 @@
         </ul>
 	</nav>
 	<div class="container-fluid">
+		<a class="btn-readmore" href="<?php echo base_url();?>search">Search here</a>
 		<div align="right" class="pagination_link noPrintpg"></div>
 		<div class="table-responsive" id="report_table"></div>
 	</div>
@@ -68,8 +70,6 @@ $(document).on("click", ".pagination li a", function(event)
 	load_report_data(page);
 
 });
-
-/*$('.pagination').prop('disabled', 'true');*/
 
 });
 </script>
