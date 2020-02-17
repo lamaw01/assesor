@@ -201,7 +201,7 @@ class Excel_import extends CI_Controller
 		$config = array();
 		$config["base_url"] = base_url() . "sheet/report";
 		$config["total_rows"] = $this->excel_import_model->count_report();
-		$config["per_page"] = 10;
+		$config["per_page"] = 7;
 		$config["uri_segment"] = 3;
 		$config["use_page_numbers"] = TRUE;
 		$config["full_tag_open"] = '<ul class="pagination">';

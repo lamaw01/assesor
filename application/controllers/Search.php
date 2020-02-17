@@ -19,7 +19,7 @@ class Search extends CI_Controller {
   }
   $data = $this->ajaxsearch_model->fetch_data($query);
   $output .= '
-  <table class="table table-bordered">
+  <table class="table table-bordered table-hover">
   <tr>
     <th><p>Old_pin</p></th>
     <th><p>Ext</p></th>
@@ -62,7 +62,7 @@ class Search extends CI_Controller {
   else
   {
    $output .= '<tr>
-       <td colspan="5">No Data Found</td>
+       <td colspan="13">No Data Found</td>
       </tr>';
   }
   $output .= '</table>';

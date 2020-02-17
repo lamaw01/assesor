@@ -21,7 +21,7 @@
 
 <body>
 
-	<nav>
+	<nav class="noPrintpg">
         <ul>
             <li>
                 <a href="<?php echo base_url();?>">Home</a>
@@ -39,7 +39,7 @@
     </nav>
 
 	<div class="container-fluid">
-		<div align="right" class="pagination_link"></div>
+		<div align="right" class="pagination_link noPrintpg"></div>
 		<div class="table-responsive" id="sheet2_table"></div>
 	</div>
 </body>

@@ -9,12 +9,12 @@ h1 {
   border-radius: 8px;
   margin: 0;
   font-size: 64px;
-  font-family: "Roboto Slab", serif;
+  font-family: "Roboto", serif;
 }
 
 p {
   line-height: 1.5;
-  font-family: "Roboto Slab", sans-serif;
+  font-family: "Roboto", sans-serif;
 
 }
 
@@ -103,14 +103,6 @@ nav {
   box-sizing: border-box;
   z-index: 100;
 }
-
-@media print 
-        {
-            .noPrint 
-            {
-                 display:none;
-            }
-        }
 
 nav a {
   padding: 0 32px;
@@ -558,10 +550,8 @@ footer #social-media-footer ul li:hover a .fa-twitter {
   }
 }
 
-@media print 
-        {
-            .noPrintpg
-            {
-                 display:none;
-            }
-        }
+@media print {
+  .noPrintpg {
+    display: none;
+  }
+}

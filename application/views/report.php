@@ -15,13 +15,26 @@
 		p {
 			font-size: 14px;
 		}
+		.flex-container {
+			display: flex;
+			background-color: DodgerBlue;
+			margin: 20px 0 20px 0;
+			justify-content: space-between;
+		}
+
+		.flex-container > div {
+			background-color: #f1f1f1;
+			margin: 10px;
+			padding: 20px;
+			font-size: 30px;
+		}
 	</style>
 
 </head>
 
 <body>
 
-	<nav class="noPrint">
+	<nav class="noPrintpg">
         <ul>
             <li>
                 <a href="<?php echo base_url();?>">Home</a>
@@ -38,9 +51,14 @@
         </ul>
 	</nav>
 	<div class="container-fluid">
-		<a class="btn-readmore" href="<?php echo base_url();?>search">Search here</a>
-		<div align="right" class="pagination_link noPrintpg"></div>
+		<a class="btn-readmore noPrintpg" href="<?php echo base_url();?>search">Search here</a>
+		<div class="flex-container">
+			<div class="dv1">1</div>
+			<div class="dv2">2</div>
+			<div class="dv3">3</div>  
+		</div>
 		<div class="table-responsive" id="report_table"></div>
+		<div align="center" class="pagination_link noPrintpg"></div>
 	</div>
 </body>
 </html>
