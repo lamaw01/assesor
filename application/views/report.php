@@ -15,19 +15,13 @@
 		p {
 			font-size: 14px;
 		}
-		.flex-container {
-			display: flex;
-			background-color: DodgerBlue;
-			margin: 20px 0 20px 0;
-			justify-content: space-between;
-		}
 
-		.flex-container > div {
-			background-color: #f1f1f1;
-			margin: 10px;
-			padding: 20px;
-			font-size: 30px;
-		}
+		input {
+  			border: 0;
+        	outline: 0;
+        	background: transparent;
+        	border-bottom: 1px solid black;
+      	}
 	</style>
 
 </head>
@@ -53,9 +47,35 @@
 	<div class="container-fluid">
 		<a class="btn-readmore noPrintpg" href="<?php echo base_url();?>search">Search here</a>
 		<div class="flex-container">
-			<div class="dv1">1</div>
-			<div class="dv2">2</div>
-			<div class="dv3">3</div>  
+			<div>
+				<div>
+					<label>CITY OF CAGAYAN DE ORO</label>
+				</div>
+				
+				<div>
+					<label>BARANGAY OF  </label>
+					<input type="text"> 
+				</div>
+			</div>
+
+			<div>
+				<p id="title-form">TAX MAPPING CONTROL</p>
+			</div>
+
+			<div>
+				<div>
+					<label>BARANGAY NO.  </label>
+					<input type="text"> 
+				</div>
+				<div>
+					<label>DISTRICT NO.  </label>
+					<input type="text"> 
+				</div>
+				<div>
+					<label>BLOCK/SECTION NO.  </label>
+					<input type="text"> 
+				</div>
+			</div>  
 		</div>
 		<div class="table-responsive" id="report_table"></div>
 		<div align="center" class="pagination_link noPrintpg"></div>

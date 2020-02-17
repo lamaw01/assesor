@@ -31,6 +31,22 @@ a:hover {
   text-decoration: underline;
 }
 
+.flex-container {
+	display: flex;
+	margin: 8px 0 8px 0;
+	justify-content: space-between;
+}
+
+.flex-container > div {
+	padding: 20px;
+	font-size: 16px;
+}
+
+#title-form {
+  font-size: 26px;
+  font-weight: 600;
+}
+
 /* Inputs */
 
 #file {
@@ -555,3 +571,4 @@ footer #social-media-footer ul li:hover a .fa-twitter {
     display: none;
   }
 }
+
