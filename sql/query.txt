@@ -3,3 +3,12 @@ FROM sheet1
 INNER JOIN sheet2
 ON sheet1.old_pin = sheet2.old_pin
 GROUP BY sheet1_id;
+
+BEGIN
+    SELECT COUNT(sheet1.old_pin)
+	FROM sheet1
+    INNER JOIN sheet2
+    ON sheet1.old_pin = sheet2.old_pin
+    GROUP BY sheet1_id;
+    
+END

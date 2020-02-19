@@ -138,21 +138,22 @@ class Excel_import_model extends CI_Model
 		return $output;
 	}
 
-	function count_report()
+	function count_report($sort)
 	{
-		$this->db->select('SUBSTRING(sheet1.old_pin,12,7) AS old_pin, sheet1.ext AS ext,
+		$this->db->select('SUBSTRING(sheet1.old_pin,12,2) AS old_pin, sheet1.ext AS ext,
 		SUBSTRING(sheet2.pin_new,17,3) AS pin_new, sheet1.owner AS owner, 
 		sheet1.owner_address AS owner_address, sheet1.td AS td, sheet1.title AS title, 
 		sheet1.cad_lot AS cad_lot, sheet1.area1 AS area1, sheet1.area2 AS area2, sheet1.kind1 AS kind1, 
 		sheet1.kind2 AS kind2, sheet1.actual_use AS actual_use');
 		$this->db->from('sheet1');
 		$this->db->join('sheet2','sheet1.old_pin = sheet2.old_pin');
+		$this->db->where('SUBSTRING(sheet1.old_pin,12,2)', $sort);
 		$this->db->group_by('sheet1_id');
 		$query = $this->db->get();
 		return $query->num_rows();
 	}
 
-	function fetch_report($limit, $start)
+	function fetch_report($limit, $start, $sort)
 	{
 		$output = '';
 		$this->db->select('SUBSTRING(sheet1.old_pin,12,7) AS old_pin, sheet1.ext AS ext,
@@ -161,10 +162,10 @@ class Excel_import_model extends CI_Model
 		sheet1.cad_lot AS cad_lot, sheet1.area1 AS area1, sheet1.area2 AS area2, sheet1.kind1 AS kind1, 
 		sheet1.kind2 AS kind2, sheet1.actual_use AS actual_use');
 		$this->db->from('sheet1');
-		$this->db->join('sheet2','sheet1.old_pin = sheet2.old_pin');		
+		$this->db->join('sheet2','sheet1.old_pin = sheet2.old_pin');
+		$this->db->where('SUBSTRING(sheet1.old_pin,12,2)', $sort);
 		$this->db->order_by("old_pin", "ASC");
 		$this->db->group_by('sheet1_id');
-		
 		$this->db->limit($limit, $start);
 		$query = $this->db->get();
 		$output .= '
@@ -209,5 +210,26 @@ class Excel_import_model extends CI_Model
 		}
 		$output .= '</table>';
 		return $output;
+	}
+
+	function limiter()
+	{
+		$this->db->select('SUBSTRING(sheet1.old_pin,12,2)');
+		$this->db->from('sheet1');
+		$this->db->join('sheet2','sheet1.old_pin = sheet2.old_pin');
+		$this->db->group_by('sheet1_id');
+		$this->db->limit(7);
+		$query = $this->db->get();
+		return $query->num_rows();
+	}
+
+	function delete_sheet1() 
+	{
+		$this->db->delete("sheet1");
+	}
+
+	function delete_sheet2() 
+	{
+		$this->db->delete("sheet2");
 	}
 }

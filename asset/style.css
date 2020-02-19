@@ -33,7 +33,7 @@ a:hover {
 
 .flex-container {
 	display: flex;
-	margin: 8px 0 8px 0;
+	margin: 4px 0 4px 0;
 	justify-content: space-between;
 }
 
@@ -45,6 +45,10 @@ a:hover {
 #title-form {
   font-size: 26px;
   font-weight: 600;
+}
+
+#sort {
+  margin-top: 6px;
 }
 
 /* Inputs */

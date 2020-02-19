@@ -54,7 +54,12 @@
 				
 				<div>
 					<label>BARANGAY OF  </label>
-					<input type="text"> 
+					<input type="text">
+				</div>
+				<div class="form-group">
+					<select name="state" id="sort" class="form-control input-sm noPrintpg">
+						<option value="">Select</option>
+					</select>
 				</div>
 			</div>
 
