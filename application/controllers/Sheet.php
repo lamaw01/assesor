@@ -12,14 +12,4 @@ class Sheet extends CI_Controller {
 	{
 		$this->load->view('sheet2');
 	}
-
-	public function report()
-	{
-		$this->load->view('report');
-	}
-
-	public function search()
-	{
-		$this->load->view('search');
-	}
 }

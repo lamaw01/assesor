@@ -57,8 +57,13 @@
 					<input type="text">
 				</div>
 				<div class="form-group">
-					<select name="state" id="sort" class="form-control input-sm noPrintpg">
-						<option value="">Select</option>
+					<select name="sort_val" id="sort_val" class="form-control input-sm noPrintpg">
+					<?php 
+					foreach($sort as $row)
+					{ 
+					echo '<option value="'.$row->old_pin.'">'.$row->old_pin.'</option>';
+					}
+					?>
 					</select>
 				</div>
 			</div>
@@ -90,12 +95,16 @@
 <script>
 $(document).ready(function(){
 
-function load_report_data(page)
-{
+function report_table(page)
+{	
+	var action = 'pagination_report';
+	var sort_val = $('#sort_val').val();
+
 	$.ajax({
 		url:"<?php echo base_url(); ?>excel_import/pagination_report/"+page,
 		method:"GET",
-		dataType:"json",
+		dataType:"JSON",
+		data:{sort_val:sort_val},
 		success:function(data)
 		{
 			$('#report_table').html(data.report_table);
@@ -104,13 +113,13 @@ function load_report_data(page)
 	});
 }
  
-load_report_data(1);
+report_table(1);
 
 $(document).on("click", ".pagination li a", function(event)
 {
 	event.preventDefault();
 	var page = $(this).data("ci-pagination-page");
-	load_report_data(page);
+	report_table(page);
 
 });
 

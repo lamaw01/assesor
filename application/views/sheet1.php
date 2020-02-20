@@ -27,7 +27,7 @@
                 <a href="<?php echo base_url();?>">Home</a>
             </li>
             <li>
-                <a href="<?php echo base_url();?>sheet/report">Report</a>
+                <a href="<?php echo base_url();?>report">Report</a>
             </li>
             <li>
                 <a class="active" href="<?php echo base_url();?>sheet/sheet1">Sheet 1</a>

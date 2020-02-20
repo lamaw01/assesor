@@ -9,6 +9,11 @@ BEGIN
 	FROM sheet1
     INNER JOIN sheet2
     ON sheet1.old_pin = sheet2.old_pin
-    GROUP BY sheet1_id;
-    
+    GROUP BY sheet1_id; 
 END
+
+SELECT DISTINCT SUBSTRING(sheet1.old_pin,12,2) AS old_pin
+FROM sheet1
+INNER JOIN sheet2
+ON sheet1.old_pin = sheet2.old_pin
+GROUP BY sheet1_id;

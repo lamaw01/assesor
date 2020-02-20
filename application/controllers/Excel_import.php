@@ -196,12 +196,13 @@ class Excel_import extends CI_Controller
 
 	function pagination_report()
 	{
-		$sort = '01';
+		$sort_val = '01';
+		#$sort_val = $this->input->post('sort_val');
 		$this->load->model("excel_import_model");
 		$this->load->library("pagination");
 		$config = array();
 		$config["base_url"] = base_url() . "sheet/report";
-		$config["total_rows"] = $this->excel_import_model->count_report($sort);
+		$config["total_rows"] = $this->excel_import_model->count_report($sort_val);
 		$config["per_page"] = 6;
 		$config["uri_segment"] = 3;
 		$config["use_page_numbers"] = TRUE;
@@ -228,23 +229,9 @@ class Excel_import extends CI_Controller
 
 		$output = array(
 			'pagination_link'  => $this->pagination->create_links(),
-			'report_table'   => $this->excel_import_model->fetch_report($config["per_page"], $start, $sort)
+			'report_table'   => $this->excel_import_model->fetch_report($config["per_page"], $start, $sort_val)
 		);
 		echo json_encode($output);
-	}
-
-	function wipe_sheet1()
-	{
-		$this->load->model("excel_import_model");  
-		$this->excel_import_model->delete_sheet1();  
-		echo 'Data Deleted';
-	}
-
-	function wipe_sheet2()
-	{
-		$this->load->model("excel_import_model");  
-		$this->excel_import_model->delete_sheet2();  
-		echo 'Data Deleted';
 	}
 	
 }
