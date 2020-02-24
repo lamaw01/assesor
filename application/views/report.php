@@ -57,9 +57,10 @@
 					<input type="text">
 				</div>
 				<div class="form-group">
-					<select name="sort_val" id="sort_val" class="form-control input-sm noPrintpg">
+					<select name="sort_val" id="sort_val" placeholder="select" class="form-control input-sm noPrintpg">
+					<option selected hidden>--Select No--</option>
 					<?php 
-					foreach($sort as $row)
+					foreach($sorter as $row)
 					{ 
 					echo '<option value="'.$row->old_pin.'">'.$row->old_pin.'</option>';
 					}
@@ -72,26 +73,13 @@
 				<p id="title-form">TAX MAPPING CONTROL</p>
 			</div>
 
-			<div>
-				<div>
-					<label>BARANGAY NO.  </label>
-					<input type="text"> 
-				</div>
-				<div>
-					<label>DISTRICT NO.  </label>
-					<input type="text"> 
-				</div>
-				<div>
-					<label>BLOCK/SECTION NO.  </label>
-					<input type="text"> 
-				</div>
-			</div>  
+			<div id="header"></div>
 		</div>
 		<div class="table-responsive" id="report_table"></div>
 		<div align="center" class="pagination_link noPrintpg"></div>
 	</div>
 </body>
-</html>
+</html>	
 <script>
 $(document).ready(function(){
 
@@ -104,11 +92,12 @@ function report_table(page)
 		url:"<?php echo base_url(); ?>excel_import/pagination_report/"+page,
 		method:"GET",
 		dataType:"JSON",
-		data:{sort_val:sort_val},
+		data:{action:action, sort_val:sort_val},
 		success:function(data)
 		{
 			$('#report_table').html(data.report_table);
 			$('.pagination_link').html(data.pagination_link);
+			$('#header').html(data.header);
 		}
 	});
 }
@@ -122,6 +111,8 @@ $(document).on("click", ".pagination li a", function(event)
 	report_table(page);
 
 });
+
+//$("#sort_val").prop("selectedIndex", -1);
 
 });
 </script>

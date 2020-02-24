@@ -212,4 +212,34 @@ class Excel_import_model extends CI_Model
 		return $output;
 	}
 
+	function get_header($sort_val)
+	{	
+		$output = '';
+		$this->db->select('DISTINCT SUBSTRING(sheet1.old_pin,5,2) AS barangay_no
+		,SUBSTRING(sheet1.old_pin,9,2) AS block_no, SUBSTRING(sheet1.old_pin,12,2) AS district_no');
+		$this->db->from('sheet1');
+		$this->db->join('sheet2','sheet1.old_pin = sheet2.old_pin');
+		$this->db->where('SUBSTRING(sheet1.old_pin,12,2)', $sort_val);
+		$this->db->group_by('sheet1_id');
+		$query = $this->db->get();
+		foreach($query->result() as $row)
+		{
+		$output .= '
+			<div>
+				<label>BARANGAY NO.  </label>
+				<input type="text" placeholder="'.$row->barangay_no.'">
+			</div>
+			<div>
+				<label>DISTRICT NO.  </label>
+				<input type="text" placeholder="'.$row->block_no.'">
+			</div>
+			<div>
+				<label>BLOCK/SECTION NO.  </label>
+				<input type="text" placeholder="'.$row->district_no.'">
+			</div>
+		';
+		}
+		return $output;
+	}
+
 }

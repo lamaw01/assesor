@@ -11,7 +11,7 @@ class Report extends CI_Controller {
 
 	public function index()
 	{	
-		$data['sort'] = $this->dropdown_model->getdata('sort');
+		$data['sorter'] = $this->dropdown_model->getdata('sorter');
 		$this->load->view('report', $data);
 	}
 
