@@ -11,6 +11,12 @@ class Excel_import_model extends CI_Model
 		$this->db->insert_batch('sheet2', $data);
 	}
 
+	function delete_data()
+	{
+		$this->db->empty_table('sheet1');
+		$this->db->empty_table('sheet2');
+	}
+
 	function count_sheet2()
 	{
 		$query = $this->db->get("sheet2");

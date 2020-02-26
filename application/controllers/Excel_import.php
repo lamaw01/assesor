@@ -14,6 +14,12 @@ class Excel_import extends CI_Controller
 		$this->load->view('excel_import');
 	}
 
+	function delete_data_controller()
+	{
+		$this->excel_import_model->delete_data();
+		redirect('excel_import');
+	}
+
 	function import_sheet1()
 	{
 		if(isset($_FILES["file"]["name"]))
@@ -196,7 +202,7 @@ class Excel_import extends CI_Controller
 
 	function pagination_report()
 	{
-		$sort_val = '02';
+		$sort_val = '01';
 		#$sort_val = $this->input->post('sort_val');
 		$this->load->model("excel_import_model");
 		$this->load->library("pagination");

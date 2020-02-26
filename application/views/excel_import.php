@@ -33,7 +33,10 @@
                 <a href="<?php echo base_url();?>sheet/sheet2">Sheet 2</a>
             </li>
         </ul>
-    </nav>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a onclick="return confirm('Are you sure you want to Delete Data?')" href="<?php echo base_url();?>excel_import/delete_data_controller">Delete Data</a></li>
+    </ul>
+</nav>
     
     <main>
 
@@ -109,6 +112,17 @@ $(document).ready(function(){
 			}
 		})
 	});
-
+$.confirm({
+    title: 'Confirm!',
+    content: 'Delete Data?',
+    buttons: {
+        confirm: function () {
+            $.alert('Yes');
+        },
+        cancel: function () {
+            $.alert('Cancel');
+        }
+    }
+});
 });
 </script>
