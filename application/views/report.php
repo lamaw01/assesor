@@ -56,17 +56,19 @@
 					<label>BARANGAY OF  </label>
 					<input type="text">
 				</div>
-				<div class="form-group">
-					<select name="sort_val" id="sort_val" placeholder="select" class="form-control input-sm noPrintpg">
-					<option selected hidden>--Select No--</option>
-					<?php 
-					foreach($sorter as $row)
-					{ 
-					echo '<option value="'.$row->old_pin.'">'.$row->old_pin.'</option>';
-					}
-					?>
-					</select>
-				</div>
+				<form>
+					<div class="form-group">
+						<select name="dropdown_val" id="dropdown_val" class="form-control input-sm noPrintpg">
+							<option selected hidden>--Select No--</option>
+							<?php 
+							foreach($sorter as $row)
+							{ 
+							echo '<option value="'.$row->old_pin.'">'.$row->old_pin.'</option>';
+							}
+							?>
+						</select>
+					</div>
+				</form>
 			</div>
 
 			<div>
@@ -85,22 +87,48 @@ $(document).ready(function(){
 
 function report_table(page)
 {	
-	var action = 'pagination_report';
-	var sort_val = $('#sort_val').val();
+	$("#dropdown_val").change(function () {
+	//var action = 'pagination_report';
+	var id = $('#dropdown_val').val();
 
-	$.ajax({
-		url:"<?php echo base_url(); ?>excel_import/pagination_report/"+page,
-		method:"GET",
-		dataType:"JSON",
-		data:{action:action, sort_val:sort_val},
-		success:function(data)
-		{
-			$('#report_table').html(data.report_table);
-			$('.pagination_link').html(data.pagination_link);
-			$('#header').html(data.header);
-		}
+		$.ajax({
+			url:"<?php echo base_url(); ?>excel_import/pagination_report/"+page,
+			method:"POST",
+			dataType:"JSON",
+			data:{id:id},
+			success:function(data)
+			{
+				$('#report_table').html(data.report_table);
+				$('.pagination_link').html(data.pagination_link);
+				$('#header').html(data.header);
+				//alert(id)
+			}
+		});
 	});
 }
+
+// function report_table(page)
+// {	
+// 	$('#dropdown_val').change(function(){ 
+
+// 		var action = 'pagination_report';
+// 		var sort_val = $('#dropdown_val :selected').text();
+
+// 		$.ajax({
+// 			url:"<?php echo base_url(); ?>excel_import/pagination_report/"+page,
+// 			method:"POST",
+// 			dataType:"JSON",
+// 			data:{action:action, sort_val:sort_val},
+// 			success:function(data)
+// 			{
+// 				$('#report_table').html(data.report_table);
+// 				$('.pagination_link').html(data.pagination_link);
+// 				$('#header').html(data.header);
+// 			}
+// 		});
+// 	}
+// }
+
  
 report_table(1);
 
@@ -112,7 +140,25 @@ $(document).on("click", ".pagination li a", function(event)
 
 });
 
-//$("#sort_val").prop("selectedIndex", -1);
+// 	$('#dropdown_val').change(function()
+// 	{ 	
+// 		var id=$(this).val();
+// 		$.ajax({
+// 			url:"<?php echo base_url(); ?>excel_import/pagination_report/"+page,
+// 			method : "POST",
+// 			data : {id: id},
+// 			//async : true,
+// 			dataType : 'json',
+// 			success: function(data)
+// 			{  
+// 				$('#report_table').html(data.report_table);
+// 				$('.pagination_link').html(data.pagination_link);
+// 				$('#header').html(data.header);
+//             }
+// 		});
+// 		//return false;
+// 	});
+
 
 });
 </script>
