@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -33,10 +34,12 @@
                 <a href="<?php echo base_url();?>sheet/sheet2">Sheet 2</a>
             </li>
         </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a onclick="return confirm('Are you sure you want to Delete Data?')" href="<?php echo base_url();?>excel_import/delete_data_controller">Delete Data</a></li>
-    </ul>
-</nav>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a onclick="return confirm('Are you sure you want to Delete Data?')" href="<?php echo base_url();?>excel_import/delete_data_controller">Delete Data</a>
+            </li>
+        </ul>
+    </nav>
     
     <main>
 

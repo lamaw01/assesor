@@ -1,19 +1,21 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Report</title>
     
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>asset/bootstrap.min.css" />
 	<script src="<?php echo base_url(); ?>asset/jquery.min.js"></script>
 	<link rel="stylesheet" href="<?php echo base_url(); ?>asset/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Roboto+Slab&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/e372c84a64.js" crossorigin="anonymous"></script>
 
+	<title>Report</title>
+
 	<style>
 		td, th {
 			text-align: center;
-		}
-		p {
-			font-size: 14px;
 		}
 
 		input {
@@ -22,6 +24,9 @@
         	background: transparent;
         	border-bottom: 1px solid black;
       	}
+		.search {
+			margin-right: 16px;
+		}
 	</style>
 
 </head>
@@ -43,10 +48,30 @@
                 <a href="<?php echo base_url();?>sheet/sheet2">Sheet 2</a>
             </li>
         </ul>
+		<ul class="nav navbar-nav navbar-right search">
+			<li>
+				<a href="<?php echo base_url();?>search">Search here</a>
+            </li>
+		</ul>
 	</nav>
+	
 	<div class="container-fluid">
-		<a class="btn-readmore noPrintpg" href="<?php echo base_url();?>search">Search here</a>
-		<div class="flex-container">
+	<div id="form_select">
+		<form>
+			<div class="form-group">
+				<select name="dropdown_val" id="dropdown_val" class="form-control noPrintpg">
+					<option selected hidden>--Select No--</option>
+					<?php 
+						foreach($sorter as $row)
+						{ 
+							echo '<option value="'.$row->old_pin.'">'.$row->old_pin.'</option>';
+						}
+					?>
+				</select>
+			</div>
+		</form>
+	</div>
+		<div class="flex-container" id="header">
 			<div>
 				<div>
 					<label>CITY OF CAGAYAN DE ORO</label>
@@ -56,26 +81,27 @@
 					<label>BARANGAY OF  </label>
 					<input type="text">
 				</div>
-				<form>
-					<div class="form-group">
-						<select name="dropdown_val" id="dropdown_val" class="form-control input-sm noPrintpg">
-							<option selected hidden>--Select No--</option>
-							<?php 
-							foreach($sorter as $row)
-							{ 
-							echo '<option value="'.$row->old_pin.'">'.$row->old_pin.'</option>';
-							}
-							?>
-						</select>
-					</div>
-				</form>
+				
 			</div>
 
 			<div>
 				<p id="title-form">TAX MAPPING CONTROL</p>
 			</div>
 
-			<div id="header"></div>
+			<div>
+				<div>
+					<label>BARANGAY NO.  </label>
+					<input type="text">
+				</div>
+				<div>
+					<label>DISTRICT NO.  </label>
+					<input type="text">
+				</div>
+				<div>
+					<label>BLOCK/SECTION NO.  </label>
+					<input type="text">
+				</div>
+			</div>
 		</div>
 		<div class="table-responsive" id="report_table"></div>
 		<div align="center" class="pagination_link noPrintpg"></div>
@@ -89,6 +115,7 @@ function report_table(page)
 {	
 	$("#dropdown_val").change(function () {
 	//var action = 'pagination_report';
+	event.preventDefault();
 	var id = $('#dropdown_val').val();
 
 		$.ajax({
@@ -106,29 +133,6 @@ function report_table(page)
 		});
 	});
 }
-
-// function report_table(page)
-// {	
-// 	$('#dropdown_val').change(function(){ 
-
-// 		var action = 'pagination_report';
-// 		var sort_val = $('#dropdown_val :selected').text();
-
-// 		$.ajax({
-// 			url:"<?php echo base_url(); ?>excel_import/pagination_report/"+page,
-// 			method:"POST",
-// 			dataType:"JSON",
-// 			data:{action:action, sort_val:sort_val},
-// 			success:function(data)
-// 			{
-// 				$('#report_table').html(data.report_table);
-// 				$('.pagination_link').html(data.pagination_link);
-// 				$('#header').html(data.header);
-// 			}
-// 		});
-// 	}
-// }
-
  
 report_table(1);
 
@@ -139,25 +143,6 @@ $(document).on("click", ".pagination li a", function(event)
 	report_table(page);
 
 });
-
-// 	$('#dropdown_val').change(function()
-// 	{ 	
-// 		var id=$(this).val();
-// 		$.ajax({
-// 			url:"<?php echo base_url(); ?>excel_import/pagination_report/"+page,
-// 			method : "POST",
-// 			data : {id: id},
-// 			//async : true,
-// 			dataType : 'json',
-// 			success: function(data)
-// 			{  
-// 				$('#report_table').html(data.report_table);
-// 				$('.pagination_link').html(data.pagination_link);
-// 				$('#header').html(data.header);
-//             }
-// 		});
-// 		//return false;
-// 	});
 
 
 });

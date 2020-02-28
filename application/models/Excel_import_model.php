@@ -222,7 +222,8 @@ class Excel_import_model extends CI_Model
 	{	
 		$output = '';
 		$this->db->select('DISTINCT SUBSTRING(sheet1.old_pin,5,2) AS barangay_no
-		,SUBSTRING(sheet1.old_pin,9,2) AS block_no, SUBSTRING(sheet1.old_pin,12,2) AS district_no');
+		,SUBSTRING(sheet1.old_pin,9,2) AS block_no, SUBSTRING(sheet1.old_pin,12,2) AS district_no
+		,sheet1.barangay AS barangay_name');
 		$this->db->from('sheet1');
 		$this->db->join('sheet2','sheet1.old_pin = sheet2.old_pin');
 		$this->db->where('SUBSTRING(sheet1.old_pin,12,2)', $sort_val);
@@ -232,16 +233,36 @@ class Excel_import_model extends CI_Model
 		{
 		$output .= '
 			<div>
-				<label>BARANGAY NO.  </label>
-				<input type="text" placeholder="'.$row->barangay_no.'">
+				<div>
+					<label>CITY OF CAGAYAN DE ORO</label>
+				</div>
+				
+				<div>
+					<label>BARANGAY OF  </label>
+					<input type="text" placeholder="'.$row->barangay_name.'">
+				</div>
+				
 			</div>
+
+				<div>
+					<p id="title-form">TAX MAPPING CONTROL</p>
+				</div>
+
 			<div>
-				<label>DISTRICT NO.  </label>
-				<input type="text" placeholder="'.$row->block_no.'">
-			</div>
-			<div>
-				<label>BLOCK/SECTION NO.  </label>
-				<input type="text" placeholder="'.$row->district_no.'">
+				<div>
+					<label>BARANGAY NO.  </label>
+					<input type="text" placeholder="'.$row->barangay_no.'">
+				</div>
+
+				<div>
+					<label>DISTRICT NO.  </label>
+					<input type="text" placeholder="'.$row->block_no.'">
+				</div>
+
+				<div>
+					<label>BLOCK/SECTION NO.  </label>
+					<input type="text" placeholder="'.$row->district_no.'">
+				</div>
 			</div>
 		';
 		}

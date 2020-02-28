@@ -51,6 +51,10 @@ a:hover {
   margin-top: 6px;
 }
 
+#form_select {
+  margin-top: 6px;
+}
+
 /* Inputs */
 
 #file {
