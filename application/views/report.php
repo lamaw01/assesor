@@ -39,7 +39,7 @@
                 <a href="<?php echo base_url();?>">Home</a>
             </li>
             <li>
-                <a class="active" href="<?php echo base_url();?>sheet/report">Report</a>
+                <a class="active" href="<?php echo base_url();?>report">Report</a>
             </li>
             <li>
                 <a href="<?php echo base_url();?>sheet/sheet1">Sheet 1</a>
@@ -54,23 +54,28 @@
             </li>
 		</ul>
 	</nav>
-	
-	<div class="container-fluid">
-	<div id="form_select">
+
+	<div class="container-fluid" id="form_select">
 		<form>
-			<div class="form-group">
-				<select name="dropdown_val" id="dropdown_val" class="form-control noPrintpg">
-					<option selected hidden>--Select No--</option>
-					<?php 
-						foreach($sorter as $row)
-						{ 
-							echo '<option value="'.$row->old_pin.'">'.$row->old_pin.'</option>';
-						}
-					?>
-				</select>
+			<div class="row">
+				<div class="col">
+					<div class="form-group col-md-3">
+						<select name="dropdown_val" id="dropdown_val" class="form-control noPrintpg">
+							<option selected hidden>--Select No--</option>
+							<?php 
+								foreach($sorter as $row)
+								{ 
+									echo '<option value="'.$row->old_pin.'">'.$row->old_pin.'</option>';
+								}
+							?>
+						</select>
+					</div>
+				</div>
 			</div>
 		</form>
 	</div>
+	
+	<div class="container-fluid">
 		<div class="flex-container" id="header">
 			<div>
 				<div>
@@ -113,11 +118,11 @@ $(document).ready(function(){
 
 function report_table(page)
 {	
-	$("#dropdown_val").change(function () {
+	$("#dropdown_val").change(function () 
+	{
 	//var action = 'pagination_report';
-	event.preventDefault();
-	var id = $('#dropdown_val').val();
-
+		event.preventDefault();
+		var id = $('#dropdown_val').val();
 		$.ajax({
 			url:"<?php echo base_url(); ?>excel_import/pagination_report/"+page,
 			method:"POST",
@@ -140,10 +145,22 @@ $(document).on("click", ".pagination li a", function(event)
 {
 	event.preventDefault();
 	var page = $(this).data("ci-pagination-page");
-	report_table(page);
-
+	var id = $('#dropdown_val').val();
+	$.ajax({
+		url:"<?php echo base_url(); ?>excel_import/pagination_report/"+page,
+		method:"POST",
+		dataType:"JSON",
+		data:{id:id},
+		success:function(data)
+		{
+			$('#report_table').html(data.report_table);
+			$('.pagination_link').html(data.pagination_link);
+			$('#header').html(data.header);
+			//alert(id)
+		}
+	});
+	//report_table(page);
 });
-
 
 });
 </script>
