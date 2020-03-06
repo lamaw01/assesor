@@ -12,6 +12,10 @@ h1 {
   font-family: "Roboto", serif;
 }
 
+.search {
+  margin-right: 16px;
+}
+
 p {
   line-height: 1.5;
   font-family: "Roboto", sans-serif;

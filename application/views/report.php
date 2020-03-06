@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+	<title>Report</title>
+
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,8 +11,6 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>asset/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Roboto+Slab&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/e372c84a64.js" crossorigin="anonymous"></script>
-
-	<title>Report</title>
 
 	<style>
 		td, th {
@@ -24,9 +23,6 @@
         	background: transparent;
         	border-bottom: 1px solid black;
       	}
-		.search {
-			margin-right: 16px;
-		}
 	</style>
 
 </head>
@@ -48,7 +44,7 @@
                 <a href="<?php echo base_url();?>sheet/sheet2">Sheet 2</a>
             </li>
         </ul>
-		<ul class="nav navbar-nav navbar-right search">
+		<ul class="navbar-right search">
 			<li>
 				<a href="<?php echo base_url();?>search">Search here</a>
             </li>

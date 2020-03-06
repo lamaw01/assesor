@@ -1,0 +1,3 @@
+import database located in sql folder "testing.sql"
+
+separate the importing of excel
