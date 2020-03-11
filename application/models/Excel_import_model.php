@@ -178,7 +178,7 @@ class Excel_import_model extends CI_Model
 		<table class="table table-bordered table-hover">
 		<tr>
 			<th><p>Old_pin</p></th>
-			<th><p>Ext</p></th>
+			<th><p>Extension</p></th>
 			<th><p>Pin_New</p></th>	
 			<th><p>Owner</p></th>
 			<th><p>Owner_Address</p></th>
@@ -221,8 +221,8 @@ class Excel_import_model extends CI_Model
 	function get_header($sort_val)
 	{	
 		$output = '';
-		$this->db->select('DISTINCT SUBSTRING(sheet1.old_pin,5,2) AS barangay_no
-		,SUBSTRING(sheet1.old_pin,9,2) AS block_no, SUBSTRING(sheet1.old_pin,12,2) AS district_no
+		$this->db->select('DISTINCT SUBSTRING(sheet1.old_pin,5,2) AS district_no
+		,SUBSTRING(sheet1.old_pin,9,2) AS barangay_no, SUBSTRING(sheet1.old_pin,12,2) AS block_no
 		,sheet1.barangay AS barangay_name');
 		$this->db->from('sheet1');
 		$this->db->join('sheet2','sheet1.old_pin = sheet2.old_pin');
@@ -256,12 +256,12 @@ class Excel_import_model extends CI_Model
 
 				<div>
 					<label>DISTRICT NO.  </label>
-					<input type="text" placeholder="'.$row->block_no.'">
+					<input type="text" placeholder="'.$row->district_no.'">
 				</div>
 
 				<div>
 					<label>BLOCK/SECTION NO.  </label>
-					<input type="text" placeholder="'.$row->district_no.'">
+					<input type="text" placeholder="'.$row->block_no.'">
 				</div>
 			</div>
 		';

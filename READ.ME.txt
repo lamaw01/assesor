@@ -1,3 +1,3 @@
 import database located in sql folder "testing.sql"
 
-separate the importing of excel
+separate the importing of excel. sheet1 and sheet2
